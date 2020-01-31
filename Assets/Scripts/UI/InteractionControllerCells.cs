@@ -23,10 +23,13 @@ public class InteractionControllerCells : MonoBehaviour
 
     private Renderer rend; //цвет ячейки
     private Color startColor; //изначальный цвет
+
+    private PlayerStats playerStats;
     
     BuildManager buildManager;
     void Start()
     {
+        playerStats = GameObject.FindGameObjectWithTag("Controller").GetComponent<PlayerStats>();
         rend = GetComponent<Renderer>();
         startColor = rend.material.color; //сохранение базового цвета
         buildManager = BuildManager.instance;
@@ -43,6 +46,9 @@ public class InteractionControllerCells : MonoBehaviour
         if (gameObject.tag == "Road") //с дорогой нельзя взаимодействовать
             return;
 
+        if (playerStats.role != 2)
+            return;
+
         if (turret != null) { //Выбор туррели, если она есть в ячейке
             buildManager.SelectCell(this);
             return;
@@ -56,7 +62,7 @@ public class InteractionControllerCells : MonoBehaviour
     }
 
     
-    void BuildTower(TurretBlueprint blueprint) {
+    void BuildTower(TurretBlueprint blueprint, int playerControl = 1) {
          if (PlayerStats.Money < blueprint.cost) { //Если не хватает средств - не строим
             Debug.Log("Not enough shards to build that."); //Вывести на экран сообщение
             return;
@@ -66,6 +72,7 @@ public class InteractionControllerCells : MonoBehaviour
 
         GameObject _turret = Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
         turret = _turret;
+        turret.GetComponent<TurretFindTarget>().playerControl = playerControl;
 
         turretBlueprint = blueprint;
 

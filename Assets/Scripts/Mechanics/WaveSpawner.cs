@@ -11,13 +11,19 @@ public class WaveSpawner : MonoBehaviour
     public Text surWaveText; //Отображение текущей волны
     public Text enemiesAliveText;
     public float timeBetweenWaves = 5f; //максимальная задержка между волнами
-    private float countdown = 10f; //время ожидания следующей волны
-    public int wavesCount = 0; //общее количество волн
+    private float countdown = 2f; //время ожидания следующей волны
+    //public int wavesCount = 0; //общее количество волн
     public static int enemiesAlive = 0; //всего врагов на карте в текущий момент
     public static int healthMult = 1; //множитель жизни врагов
-    public int startHealthMult = 1; //множитель жизни врагов
+    public int startHealthMult = 1; //множитель жизни врагов на старт
+    public int playerControl;
+    private PlayerStats playerStats;
+    public PhaseManager phaseManager;
+    public int roadToGo; //по какой дороге идти
 
     void Start() {
+        phaseManager = PhaseManager.instance;
+        playerStats = GameObject.FindGameObjectWithTag("Controller").GetComponent<PlayerStats>();
         healthMult = startHealthMult;
     }
     
@@ -27,19 +33,27 @@ public class WaveSpawner : MonoBehaviour
         if (enemiesAlive > 0) {
             return;
         }
-
-        if (countdown <= 0f) {
+ 
+        if (countdown <= 0f && playerStats.role == 1 && playerControl == 1) {
             StartCoroutine(StandartWave()); //запуск функции с паузой
-            StartCoroutine(HeavyWave());
-            StartCoroutine(FastWave());
-            if (wavesCount % 5 == 0) //Каждую 5 волну спавн боссов
-                StartCoroutine(BossWave());
-            if (wavesCount % 10 == 0)
-                healthMult++; //увеличение живучести врагов каждые 10 волн
+            // StartCoroutine(HeavyWave());
+            // StartCoroutine(FastWave());
+            // if (wavesCount % 5 == 0) //Каждую 5 волну спавн боссов
+            //     StartCoroutine(BossWave());
+            // if (wavesCount % 10 == 0)
+            //     healthMult++; //увеличение живучести врагов каждые 10 волн
             
             countdown = timeBetweenWaves;
-            wavesCount++;
+           // wavesCount++;
             PlayerStats.Waves++;
+            surWaveText.text = PlayerStats.Waves.ToString();
+            return;
+        }
+        //Ход второго игрока с рандомным выбором дороги
+        else if (countdown <= 0f && playerStats.role == 2 && playerControl == 2) {
+            StartCoroutine(StandartWave());
+            PlayerStats.Waves++;
+            roadToGo = Random.Range(1,4);
             surWaveText.text = PlayerStats.Waves.ToString();
             return;
         }
@@ -47,7 +61,9 @@ public class WaveSpawner : MonoBehaviour
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity); //Проверка, что откат не будет меньше нуля
 
-        waveCountdownText.text = string.Format("{0:00.00}",countdown); //отображение числа в виде в секунд с милисекундами       
+        waveCountdownText.text = string.Format("{0:00.00}",countdown); //отображение числа в виде в секунд с милисекундами    
+
+ 
     }
     IEnumerator StandartWave() {
                 
@@ -67,8 +83,8 @@ public class WaveSpawner : MonoBehaviour
             SpawnEnemy(wave.enemy);
             yield return new WaitForSeconds(1f / wave.rate);
         }
-        if (wavesCount > 5 && wavesCount % 3 == 0) //наращивание количества врагов с волнами
-            wave.count++;
+        // if (wavesCount > 5 && wavesCount % 3 == 0) //наращивание количества врагов с волнами
+        //     wave.count++;
     }
 
     IEnumerator FastWave() {
@@ -78,8 +94,8 @@ public class WaveSpawner : MonoBehaviour
             SpawnEnemy(wave.enemy);
             yield return new WaitForSeconds(1f / wave.rate);
         }
-        if (wavesCount > 5 && wavesCount % 3 == 0)
-        wave.count += 2;
+        // if (wavesCount > 5 && wavesCount % 3 == 0)
+        // wave.count += 2;
     }
     IEnumerator BossWave() {
                 
@@ -92,7 +108,9 @@ public class WaveSpawner : MonoBehaviour
     }
     
     void SpawnEnemy(GameObject enemy) {
-        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        GameObject temp = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        temp.GetComponent<Enemy>().playerControl = playerControl;
+        temp.GetComponent<Enemy>().roadToGo = roadToGo;
         enemiesAlive++;
     }
 }

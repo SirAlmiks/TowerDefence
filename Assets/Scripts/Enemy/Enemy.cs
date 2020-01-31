@@ -19,11 +19,22 @@ public class Enemy : MonoBehaviour
     [Header("Unity Setup Fields")]
     public GameObject enemyDieEffect;
     private float dieEffectLive = 0.5f; //продолжительность существования эффекта смерти врага
+    public int playerControl; //Кому принадлежит миньон
+    public int roadToGo; //по какой дороге идти
+    private WayPoints wayPoints;
 
     public Image healthBar;
     void Start()
     {
-        target = WayPoints.points[0]; //Изначально таргетирование на первую точку
+        wayPoints = GameObject.FindGameObjectWithTag($"Road{roadToGo}").GetComponent<WayPoints>();
+        if (playerControl == 1) {
+            target = wayPoints.pointsPlayer1[0]; //Изначально таргетирование на первую точку для игрока 1
+            Debug.Log(target);
+
+        }
+        if (playerControl == 2) {
+            target = wayPoints.pointsPlayer2[0]; //и на последнюю, для игрока 2
+        }
         speed = startSpeed;
         health = startHealth * WaveSpawner.healthMult; //стартовые жизни с множителем
     }
@@ -36,7 +47,10 @@ public class Enemy : MonoBehaviour
 
         //если враг достиг контрольной точки, берем следующую
         if(Vector3.Distance(transform.position, target.position) <= 0.1f) {
-            GetNextWaypoint();
+            if (playerControl == 1)
+                GetNextWaypoint(wayPoints.pointsPlayer1);
+            if (playerControl == 2)
+                GetNextWaypoint(wayPoints.pointsPlayer2);
         }
         speed = startSpeed;
     }
@@ -62,14 +76,14 @@ public class Enemy : MonoBehaviour
         Destroy(dieEffect, dieEffectLive); //уничтожение эффекта смерти
     }
 
-    void GetNextWaypoint() {
+    void GetNextWaypoint(List<Transform> wayPoints) {
                 //проверка, если враг достиг последней контрольной точки - уничтожение
-        if (wavepointIndex >= WayPoints.points.Length - 1) {
+        if (wavepointIndex >= wayPoints.Count - 1) {
             EndPath();
             return;
         }
         wavepointIndex++;
-        target = WayPoints.points[wavepointIndex];
+        target = wayPoints[wavepointIndex];
     }
 
     void EndPath() {

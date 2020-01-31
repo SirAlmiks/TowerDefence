@@ -9,6 +9,7 @@ public class TurretFindTarget : MonoBehaviour
     [Header("Unity Setup Fields")]
     public Transform partToRotate;
     public TurretParameters turretParameters;
+    public int playerControl;
     
     public float turnCannonSpeed = 10f; //скорость поворота башни
     public string enemyTag = "Enemy";
@@ -50,13 +51,15 @@ public class TurretFindTarget : MonoBehaviour
         GameObject nearestEnemy = null; //ближайшего врага пока нет
 
         foreach (GameObject enemy in enemies) { //проходим по всем врагам
+            if (enemy.GetComponent<Enemy>().playerControl != playerControl) {
             float distanceToEnemy = Vector3.Distance(transform.position,
             enemy.transform.position);
             //Вычисляем расстояние к врагу относительно башни
-            if (distanceToEnemy < shortestDistance) { //если враг ближе, чем предыдущее расстояние,
+                if (distanceToEnemy < shortestDistance) { //если враг ближе, чем предыдущее расстояние,
                                                         //то записываем его как ближайшую цель
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
             }
         }
 

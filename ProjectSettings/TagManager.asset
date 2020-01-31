@@ -7,6 +7,10 @@ TagManager:
   - Road
   - Tower
   - Enemy
+  - Road1
+  - Road2
+  - Road3
+  - Controller
   layers:
   - Default
   - TransparentFX

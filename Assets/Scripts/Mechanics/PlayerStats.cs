@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
 
     public static int Waves;
 
+    public int role; //Атакующий (1) или защитник (2)
+
 
     void Start()
     {
