@@ -1,23 +1,23 @@
 ﻿<Properties StartupConfiguration="{28866EB0-7993-C171-348D-8535A8E3480D}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlaneScan.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/Shop.cs">
     <Files>
-      <File FileName="Assets/PlaneScan.cs" Line="11" Column="30" />
+      <File FileName="Assets/PlaneScan.cs" Line="11" Column="11" />
+      <File FileName="Assets/Scripts/Mechanics/WaveSpawner.cs" Line="6" Column="21" />
+      <File FileName="Assets/Scripts/Mechanics/PlayerStats.cs" />
+      <File FileName="Assets/Scripts/Mechanics/WayPoints.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/Shop.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="TowerDefence" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="PlaneScan.cs" selected="True" />
-            </Node>
-          </Node>
+          <Node name="TowerDefence" expanded="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e533f997-072a-4a49-ba54-db24781b2836" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fe995bab-4adb-4ac4-a64c-0b8b49ddd567" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
