@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
     public TurretBlueprint baseTurret;
     public TurretBlueprint heavyCannon;
     public TurretBlueprint laserTurret;
+    public TurretBlueprint repairTower;
 
     //TODO - Добавить исчезновение панельки в тактическом режиме
     BuildManager buildManager;
@@ -29,5 +30,11 @@ public class Shop : MonoBehaviour
     public void SelectLaserTurret() {
         Debug.Log("Buy Laser Turret");
         buildManager.SelectTurretToBuild(laserTurret);
+    }
+
+    public void SelectRepairTower()
+    {
+        Debug.Log("Buy Repair Tower");
+        buildManager.SelectTurretToBuild(repairTower);
     }
 }
