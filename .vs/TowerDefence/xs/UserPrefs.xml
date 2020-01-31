@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{28866EB0-7993-C171-348D-8535A8E3480D}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlaneScan.cs">
+    <Files>
+      <File FileName="Assets/PlaneScan.cs" Line="11" Column="30" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TowerDefence" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="PlaneScan.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e533f997-072a-4a49-ba54-db24781b2836" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
