@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.441298, g: 0.49010068, b: 0.57015055, a: 1}
+  m_IndirectSpecularColor: {r: 0.44129813, g: 0.49010086, b: 0.5701505, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2292,6 +2292,7 @@ GameObject:
   - component: {fileID: 469266645}
   - component: {fileID: 469266644}
   - component: {fileID: 469266648}
+  - component: {fileID: 469266649}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: Untagged
@@ -2416,6 +2417,28 @@ MonoBehaviour:
   topPanel: {fileID: 268266461}
   rightPanel: {fileID: 23343433}
   shop: {fileID: 622029993}
+--- !u!114 &469266649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469266642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32187365ced0c42219cde2b57c99b323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings:
+    threshold: 0.9
+    softKnee: 0.5
+    radius: 2
+    intensity: 0.41
+    highQuality: 1
+    antiFlicker: 0
+    dirtTexture: {fileID: 0}
+    dirtIntensity: 2.5
+  m_Shader: {fileID: 4800000, guid: e45d4f28262b04d10a075856ab5fdb5e, type: 3}
 --- !u!1 &469875482
 GameObject:
   m_ObjectHideFlags: 0
