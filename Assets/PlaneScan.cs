@@ -8,7 +8,7 @@ public class PlaneScan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sess
+        //ARKitSessionSubsystem
     }
 
     // Update is called once per frame
