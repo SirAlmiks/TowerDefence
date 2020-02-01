@@ -14,7 +14,8 @@ public class GameMaster : MonoBehaviour
     {
         if(gameOver)
             return;
-        if (PlayerStats.Lives <= 0) {
+            //TODO: сделать экран победы
+        if (PlayerStats.LivesPlayer <= 0 || PlayerStats.LivesEnemy <= 0) {
             EndGame();
         }
     }

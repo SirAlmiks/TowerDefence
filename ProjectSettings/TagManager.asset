@@ -11,7 +11,8 @@ TagManager:
   - Road2
   - Road3
   - Controller
-  - session
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
