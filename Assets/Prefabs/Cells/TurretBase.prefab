@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8091846404943644367}
   - component: {fileID: 6269927573256052409}
   - component: {fileID: 4508236424520028618}
+  - component: {fileID: 34333161}
   m_Layer: 0
-  m_Name: Cells
-  m_TagString: Untagged
+  m_Name: TurretBase
+  m_TagString: TurretBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6906223096519196554}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_Children: []
@@ -55,10 +56,13 @@ MonoBehaviour:
     prefab: {fileID: 0}
     cost: 0
     costText: {fileID: 0}
-    upgradedPrefab: {fileID: 0}
-    upgradeCost: 0
+    upgradedPrefabLv2: {fileID: 0}
+    upgradedPrefabLv3: {fileID: 0}
+    upgradeCostLv2: 0
+    upgradeCostLv3: 0
     upgradeCostText: {fileID: 0}
-  isUpgraded: 0
+  upgradeLv: 1
+  ownedBy: 0
 --- !u!33 &8091846404943644367
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113,8 +117,24 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6906223096519196554}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &34333161
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906223096519196554}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

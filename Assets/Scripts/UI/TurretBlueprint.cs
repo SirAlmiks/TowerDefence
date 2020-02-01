@@ -11,19 +11,26 @@ public class TurretBlueprint //Не является обработчиком и
     public int cost;
     public Text costText;
 
-    public GameObject upgradedPrefab;
-    public int upgradeCost;
+
+    public GameObject upgradedPrefabLv2;
+    public GameObject upgradedPrefabLv3;
+    public int upgradeCostLv2;
+    public int upgradeCostLv3;
     public Text upgradeCostText;
 
     void Start() {
         costText.text = "$" + cost.ToString();
-        upgradeCostText.text = "$" + cost.ToString();
+        //upgradeCostText.text = "$" + upgradeCost.ToString();
     }
 
     public int GetSellAmount() { //количество средств с продажи
         return cost / 2;
     }
-    public int GetUpgradeSellAmount() { //с продажи с улучшением
-        return (cost / 2) + (upgradeCost / 2);
+    public int GetSellLv2Amount() { //с продажи с 2 улучшением
+        return (cost / 2) + (upgradeCostLv2 / 2);
+    } 
+
+    public int GetSellLv3Amount() {
+        return (cost / 2) + (upgradeCostLv3 / 2);
     } 
 }

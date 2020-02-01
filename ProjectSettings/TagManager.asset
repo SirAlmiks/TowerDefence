@@ -12,6 +12,7 @@ TagManager:
   - Road3
   - Controller
   - session
+  - EngineerTower
   layers:
   - Default
   - TransparentFX

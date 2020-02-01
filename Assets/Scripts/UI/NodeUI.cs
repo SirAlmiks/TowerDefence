@@ -7,7 +7,7 @@ public class NodeUI : MonoBehaviour
 {
     private InteractionControllerCells cell;
     public Text upgradeCost;
-    public Text sellCost;
+    //public Text sellCost;
     public Button upgradeButton;
     public GameObject ui;
 
@@ -16,14 +16,21 @@ public class NodeUI : MonoBehaviour
 
         transform.position = cell.GetBuildPosition();
 
-        if(!cell.isUpgraded) {
-            upgradeCost.text = "$" + cell.turretBlueprint.upgradeCost; //стоимость улучшения
-            sellCost.text = "$" + cell.turretBlueprint.GetSellAmount(); //стоимость продажи
+        if(cell.upgradeLv < 3) {
+            if (cell.upgradeLv == 1) {
+                upgradeCost.text = "$" + cell.turretBlueprint.upgradeCostLv2; //стоимость улучшения
+               // sellCost.text = "$" + cell.turretBlueprint.GetSellLv2Amount(); //стоимость продажи
+            }
+            else if (cell.upgradeLv == 2) {
+                upgradeCost.text = "$" + cell.turretBlueprint.upgradeCostLv3;
+                //sellCost.text = "$" + cell.turretBlueprint.GetSellLv3Amount(); //стоимость продажи
+            }
+
             upgradeButton.interactable = true;
         }
-        else {
+        else if(cell.upgradeLv == 3)  {
             upgradeCost.text = "DONE"; //отображение, что улучшение зеавершено
-            sellCost.text = "$" + cell.turretBlueprint.GetUpgradeSellAmount(); 
+            //sellCost.text = "$" + cell.turretBlueprint.GetUpgradeSellAmount(); 
             upgradeButton.interactable = false; //кнопка улучшения невозможна для взаимодействия
         }
 
@@ -39,8 +46,8 @@ public class NodeUI : MonoBehaviour
         BuildManager.instance.DeselectCell();
     }
 
-    public void Sell() { //кнопка продажи
-        cell.SellTurret();
-        BuildManager.instance.DeselectCell();
-    }
+    // public void Sell() { //кнопка продажи
+    //     cell.SellTurret();
+    //     BuildManager.instance.DeselectCell();
+    // }
 }

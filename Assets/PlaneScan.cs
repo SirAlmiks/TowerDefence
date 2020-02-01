@@ -22,9 +22,9 @@ public class PlaneScan : MonoBehaviour
 
     private void SetMap()
     {
-        GameObject session = GameObject.FindGameObjectWithTag("session");
-        ARPlaneManager manager = session.GetComponent<ARPlaneManager>();
-        GameObject map = manager.planePrefab;
-        Debug.Log(map.transform.localScale.x + " " + map.transform.localScale.y + " " + map.transform.localScale.z);
+        // GameObject session = GameObject.FindGameObjectWithTag("session");
+        // ARPlaneManager manager = session.GetComponent<ARPlaneManager>();
+        // GameObject map = manager.planePrefab;
+        // Debug.Log(map.transform.localScale.x + " " + map.transform.localScale.y + " " + map.transform.localScale.z);
     }
 }

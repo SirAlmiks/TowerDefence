@@ -19,9 +19,10 @@ public class InteractionControllerCells : MonoBehaviour
     [HideInInspector]
     public TurretBlueprint turretBlueprint;
     [HideInInspector]
-    public bool isUpgraded = false;
+    public int upgradeLv = 1;
+    public int ownedBy = 0;
 
-    private Renderer rend; //цвет ячейки
+    public Renderer rend; //цвет ячейки
     private Color startColor; //изначальный цвет
 
     private PlayerStats playerStats;
@@ -46,7 +47,7 @@ public class InteractionControllerCells : MonoBehaviour
         if (gameObject.tag == "Road") //с дорогой нельзя взаимодействовать
             return;
 
-        if (playerStats.role != 2)
+        if (PlayerStats.role != 2) //TODO: ориентировано на одного игрока. Проверяется только один игрок на способность строить
             return;
 
         if (turret != null) { //Выбор туррели, если она есть в ячейке
@@ -83,40 +84,54 @@ public class InteractionControllerCells : MonoBehaviour
     }
 
     public void UpgradeTower() {
-         if (PlayerStats.Money < turretBlueprint.upgradeCost) { //Если не хватает средств - не улучшаем
-            Debug.Log("Not enough shards to upgrade that."); //Вывести на экран сообщение
-            return;
+        if (upgradeLv == 1) {
+            if (PlayerStats.Money < turretBlueprint.upgradeCostLv2) { //Если не хватает средств - не улучшаем
+                Debug.Log("Not enough shards to upgrade that."); //Вывести на экран сообщение
+                return;
+            }
         }
-
-        PlayerStats.Money -= turretBlueprint.upgradeCost; //снятие средств за ekexitybt башни
-
+        else  if (upgradeLv == 2) {
+            if (PlayerStats.Money < turretBlueprint.upgradeCostLv3) {
+                Debug.Log("Not enough shards to upgrade that.");
+                return;
+            }
+        }
+        
+        GameObject _turret = new GameObject();
+        if (upgradeLv == 1) {
+            PlayerStats.Money -= turretBlueprint.upgradeCostLv2; //снятие средств за улучшение башни
+            //Постройка улучшенной
+            _turret = Instantiate(turretBlueprint.upgradedPrefabLv2, GetBuildPosition(), Quaternion.identity);
+        }
+        else if (upgradeLv == 2) {
+            PlayerStats.Money -= turretBlueprint.upgradeCostLv3;
+            _turret = Instantiate(turretBlueprint.upgradedPrefabLv3, GetBuildPosition(), Quaternion.identity);
+        }
         //Уничтожение старой туррели
         Destroy(turret);
 
-        //Постройка улучшенной
-        GameObject _turret = Instantiate(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
         turret = _turret;
 
         GameObject beffect = Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(beffect, 0.5f);
 
-        isUpgraded = true;
+        upgradeLv++;
 
         Debug.Log("The turret upgraded. Shards left: " + PlayerStats.Money);
     }
 
-    public void SellTurret() {
-        if (!isUpgraded)
-        PlayerStats.Money += turretBlueprint.GetSellAmount();
-        else
-        PlayerStats.Money += turretBlueprint.GetUpgradeSellAmount();
+    // public void SellTurret() {
+    //     if (!isUpgraded)
+    //     PlayerStats.Money += turretBlueprint.GetSellAmount();
+    //     else
+    //     PlayerStats.Money += turretBlueprint.GetUpgradeSellAmount();
 
-        //TODO add cool effect
+    //     //TODO add cool effect
 
-        Destroy(turret);
-        turretBlueprint = null;
-        isUpgraded = false;
-    }
+    //     Destroy(turret);
+    //     turretBlueprint = null;
+    //     isUpgraded = false;
+    // }
 
     void OnMouseEnter() { //подствека при наводке ячейки
         if (EventSystem.current.IsPointerOverGameObject())
