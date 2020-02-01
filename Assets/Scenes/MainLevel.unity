@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 16779934}
   - component: {fileID: 16779933}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Plane Scan Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,8 +147,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16779931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03000003, y: 0.030000014, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00023651123}
+  m_LocalScale: {x: 0.030000178, y: 0.030000089, z: 1}
   m_Children:
   - {fileID: 2035290460}
   m_Father: {fileID: 1577996717}
@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.6700077, y: 5.22}
+  m_AnchoredPosition: {x: -6.668335, y: 7.8202515}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &16779933
@@ -1842,7 +1842,7 @@ GameObject:
   - component: {fileID: 316660943}
   m_Layer: 0
   m_Name: AR Session
-  m_TagString: Untagged
+  m_TagString: session
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

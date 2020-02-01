@@ -11,6 +11,7 @@ TagManager:
   - Road2
   - Road3
   - Controller
+  - session
   layers:
   - Default
   - TransparentFX
